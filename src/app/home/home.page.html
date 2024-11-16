@@ -1,20 +1,22 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title>Escáner QR</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-button expand="block" (click)="escanear()">Escanear QR</ion-button>
+  <p>{{ mensaje }}</p>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <!-- Acordeón para mostrar las propiedades del JSON -->
+  <ion-accordion-group *ngIf="datosQR && getKeys(datosQR).length > 0">
+    <ion-accordion *ngFor="let key of getKeys(datosQR)">
+      <ion-item slot="header">
+        <ion-label>{{ key }}</ion-label>
+      </ion-item>
+      <div slot="content">
+        <p>{{ datosQR[key] }}</p>
+      </div>
+    </ion-accordion>
+  </ion-accordion-group>
 </ion-content>
